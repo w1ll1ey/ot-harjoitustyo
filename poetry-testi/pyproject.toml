@@ -1,0 +1,23 @@
+[project]
+name = "poetry-testi"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "w1ll1ey",email = "vili.ilari.kaisto@gmail.com"}
+]
+requires-python = "^3.12"
+dependencies = [
+    "cowsay (>=6.1,<7.0)"
+]
+
+[tool.poetry]
+package-mode = false
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[dependency-groups]
+dev = [
+    "pytest (>=9.0.2,<10.0.0)"
+]
