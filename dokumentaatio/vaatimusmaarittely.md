@@ -33,4 +33,5 @@ Sovelluksessa on vain yksi käyttäjärooli eli pelaaja.
 
 - Erilaisten vihollisten luominen
 - Luolaston satunnainen generointi
+
   _Lisää tulossa_
