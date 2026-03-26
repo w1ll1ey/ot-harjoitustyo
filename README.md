@@ -4,6 +4,6 @@ Tarkoituksenani tällä kurssilla on luoda sovellus joka ei ole eeppinen _aikava
 
 **Laskarit**: https://github.com/w1ll1ey/ot-harjoitustyo/tree/master/laskarit
 
-**Vaatimusmäärittely**: https://github.com/w1ll1ey/ot-harjoitustyo/blob/master/dokumentaaatio/vaatimusmaarittely.md
+**Vaatimusmäärittely**: https://github.com/w1ll1ey/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md
 
 **Tuntikirjanptio**: https://github.com/w1ll1ey/ot-harjoitustyo/blob/master/dokumentaatio/tuntikirjanpito.md
