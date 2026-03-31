@@ -1,6 +1,7 @@
 from entities.level import Level
 from entities.player import Player
 from services.game_logic import GameLogic
+from ui.ui import UI
 
 def main():
     level_matrix = [
@@ -16,10 +17,8 @@ def main():
     level = Level(level_matrix)
     player = Player(start_x, start_y, HP)
     game = GameLogic(level, player)
-    
-    game.move_player(1, 1)
-    game.move_player(1, 1)
-    game.move_player(1, 1)
+    ui = UI(game)
+    ui.start()
 
     
 if __name__ == "__main__":
