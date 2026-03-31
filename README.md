@@ -7,3 +7,5 @@ Tarkoituksenani tällä kurssilla on luoda sovellus joka ei ole eeppinen _aikava
 **Vaatimusmäärittely**: https://github.com/w1ll1ey/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md
 
 **Tuntikirjanptio**: https://github.com/w1ll1ey/ot-harjoitustyo/blob/master/dokumentaatio/tuntikirjanpito.md
+
+**Changelog**: https://github.com/w1ll1ey/ot-harjoitustyo/blob/master/dokumentaatio/changelog.md
