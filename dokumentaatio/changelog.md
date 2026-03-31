@@ -8,4 +8,5 @@
 - Sovelluksen toiminnallinen pohja luotu
 - Luotu luokat Level ja Player, jotka vastaavat näiden entiteettien käytöksestä
 - Luotu GameLogic-luokka, joka vastaa pelin logiikan toiminnasta
+- Luotu UI-luokka joka vastaa graafisen käyttöliittymän toiminnasta, toistaiseksi graafinen käyttöliittymä on vain musta ruutu
 - Testattu, että Level-luokka tunnistaa missä huoneen seinät ovat
