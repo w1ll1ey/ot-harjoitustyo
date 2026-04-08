@@ -12,13 +12,13 @@ Sovelluksessa on vain yksi käyttäjärooli eli pelaaja.
 
 ### Pelikenttä ja maailma
 
-- Pelikenttä koostuu ruudukosta, jossa on seiniä sekä kulkukelpoista lattiaa.
-- Pelikenttä ladataan sovelluksen käynnistyessä valmiista matriisista tai tiedostosta.
+- Pelikenttä koostuu ruudukosta, jossa on seiniä sekä kulkukelpoista lattiaa. _TEHTY_
+- Pelikenttä ladataan sovelluksen käynnistyessä valmiista matriisista tai tiedostosta. _TEHTY_
 
 ### Pelaajan hallinta
 
-- Pelaaja voi liikkua neljään pääilmansuuntaan (WASD).
-- Pelaaja ei voi liikkua seinien läpi.
+- Pelaaja voi liikkua neljään pääilmansuuntaan (WASD). _TEHTY_
+- Pelaaja ei voi liikkua seinien läpi. _TEHTY_
 
 ### Pelimekaniikka
 
@@ -27,7 +27,7 @@ Sovelluksessa on vain yksi käyttäjärooli eli pelaaja.
 
 ### Käyttöliittymä
 
-- Graafinen esitys luolastosta (esim. yksinkertaiset kuvat tai ASCII-merkistö)
+- Graafinen esitys luolastosta (esim. yksinkertaiset kuvat tai ASCII-merkistö) _TEHTY_
 
 ## Jatkokehitysideoita
 
