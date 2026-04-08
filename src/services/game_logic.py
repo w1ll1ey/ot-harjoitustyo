@@ -11,8 +11,5 @@ class GameLogic:
         new_x, new_y = self.player.get_new_location(dx, dy)
         wall = self.level.is_wall(new_x, new_y)
 
-        if wall:
-            None
-
-        else:
+        if not wall:
             self.player.move(dx, dy)
