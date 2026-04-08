@@ -3,23 +3,24 @@ from entities.player import Player
 from services.game_logic import GameLogic
 from ui.ui import UI
 
+
 def main():
     level_matrix = [
-    [1, 1, 1, 1, 1],
-    [1, 0, 0, 0, 1],
-    [1, 0, 0, 0, 1],
-    [1, 0, 0, 0, 1],
-    [1, 1, 1, 1, 1]
+        [1, 1, 1, 1, 1],
+        [1, 0, 0, 0, 1],
+        [1, 0, 0, 0, 1],
+        [1, 0, 0, 0, 1],
+        [1, 1, 1, 1, 1]
     ]
     start_x = 1
     start_y = 1
-    HP = 10
+    hp = 10
     level = Level(level_matrix)
-    player = Player(start_x, start_y, HP)
+    player = Player(start_x, start_y, hp)
     game = GameLogic(level, player)
     ui = UI(game)
     ui.start()
 
-    
+
 if __name__ == "__main__":
     main()

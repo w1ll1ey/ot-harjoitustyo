@@ -1,6 +1,6 @@
 class Level:
-    def __init__(self, map):
-        self.map = map
-        
+    def __init__(self, matrix):
+        self.matrix = matrix
+
     def is_wall(self, x, y):
-        return self.map[y][x] == 1
+        return self.matrix[y][x] == 1
