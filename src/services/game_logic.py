@@ -12,8 +12,7 @@ class GameLogic:
         wall = self.level.is_wall(new_x, new_y)
 
         if wall:
-            print("Ouch")
+            None
 
         else:
             self.player.move(dx, dy)
-            print(f"Moved to: {self.player.x}, {self.player.y}")
