@@ -43,3 +43,9 @@ Testikattavuuden voi generoida komennolla:
 <code>poetry run invoke coverage-report</code>
 
 Raportti generoituu htmlcov-kansioon.
+
+### Pylint
+
+Tiedoston .pylintrc määrittelemät tarkistukset voi tehdä komennolla:
+
+<code>poetry run invoke lint</code>
