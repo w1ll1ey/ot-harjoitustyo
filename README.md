@@ -10,6 +10,8 @@ Sovellus on ruudukkopohjainen, vuoropohjainen luolastoseikkailupeli. Pelaaja ohj
 
 **Changelog**: https://github.com/w1ll1ey/ot-harjoitustyo/blob/master/dokumentaatio/changelog.md
 
+**Arkkitehtuuri**: https://github.com/w1ll1ey/ot-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.md
+
 ## Asennus
 
 1. Asenna riippuvuudet komennolla:
