@@ -8,7 +8,11 @@
         UI "1" --> "1" GameLogic
         GameLogic "1" --> "1" Level
         GameLogic "1" --> "1" Player
+```
 
+## Sequence Diagram for moving player to enemy
+
+```mermaid
     sequenceDiagram
         UI->>GameLogic: move_player(1, 0)
         GameLogic->>Player: get_new_location(1, 0)
