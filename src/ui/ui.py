@@ -70,6 +70,7 @@ class UI:
         
         sidebar_x = self.map_width + 15
         HP_text = self.font.render(f"HP: {self.game.player.hp}/10", True, (0, 0, 0))
-        player_text = self.font.render("@ = Remus", True, (0, 0, 0))
+        if self.game.player.name == "Remus":
+            player_text = self.font.render("@ = Remus", True, (0, 0, 0))
         self.screen.blit(HP_text, (sidebar_x, 5))
         self.screen.blit(player_text, (sidebar_x, 200))

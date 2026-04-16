@@ -1,8 +1,9 @@
 class Player:
-    def __init__(self, start_x, start_y, hp):
+    def __init__(self, start_x, start_y, hp, name):
         self.x = start_x
         self.y = start_y
         self.hp = hp
+        self.name = name
 
     def get_new_location(self, dx, dy):
         return self.x + dx, self.y + dy
