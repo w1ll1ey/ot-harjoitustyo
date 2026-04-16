@@ -64,13 +64,16 @@ class UI:
         player_y = self.game.player.y * self.cell_size
         self.screen.blit(self.textures['@'], (player_x, player_y))
         
+        sidebar_x = self.map_width + 15
+        
         for enemy in self.game.enemies:
             if enemy.name == 'Filch':
                 self.screen.blit(self.textures['F'], (enemy.x * self.cell_size, enemy.y * self.cell_size))
+                enemy_text = self.font.render("F = Filch", True, (0, 0, 0))
+                self.screen.blit(enemy_text, (sidebar_x, 215))
         
-        sidebar_x = self.map_width + 15
         HP_text = self.font.render(f"HP: {self.game.player.hp}/10", True, (0, 0, 0))
         if self.game.player.name == "Remus":
             player_text = self.font.render("@ = Remus", True, (0, 0, 0))
         self.screen.blit(HP_text, (sidebar_x, 5))
-        self.screen.blit(player_text, (sidebar_x, 200))
+        self.screen.blit(player_text, (sidebar_x, 190))
