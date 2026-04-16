@@ -12,7 +12,8 @@ class UI:
         self.clock = pygame.time.Clock()
 
         pygame.init()
-        self.screen = pygame.display.set_mode((self.map_width + 150, self.map_height))
+        self.screen = pygame.display.set_mode(
+            (self.map_width + 150, self.map_height))
 
         current_dir = os.path.dirname(__file__)
         project_root = os.path.join(current_dir, "..")
@@ -25,7 +26,7 @@ class UI:
         self.textures['.'] = self.sprites.subsurface((208, 32, 16, 16))
         self.textures['@'] = self.sprites.subsurface((240, 48, 16, 16))
         self.textures['F'] = self.sprites.subsurface((80, 64, 16, 16))
-        
+
         pygame.font.init()
         self.font = pygame.font.SysFont('Courier', 22, bold=True)
 
@@ -63,16 +64,18 @@ class UI:
         player_x = self.game.player.x * self.cell_size
         player_y = self.game.player.y * self.cell_size
         self.screen.blit(self.textures['@'], (player_x, player_y))
-        
+
         sidebar_x = self.map_width + 15
-        
+
         for enemy in self.game.enemies:
             if enemy.name == 'Filch':
-                self.screen.blit(self.textures['F'], (enemy.x * self.cell_size, enemy.y * self.cell_size))
+                self.screen.blit(
+                    self.textures['F'], (enemy.x * self.cell_size, enemy.y * self.cell_size))
                 enemy_text = self.font.render("F = Filch", True, (0, 0, 0))
                 self.screen.blit(enemy_text, (sidebar_x, 215))
-        
-        HP_text = self.font.render(f"HP: {self.game.player.hp}/10", True, (0, 0, 0))
+
+        HP_text = self.font.render(
+            f"HP: {self.game.player.hp}/10", True, (0, 0, 0))
         if self.game.player.name == "Remus":
             player_text = self.font.render("@ = Remus", True, (0, 0, 0))
         self.screen.blit(HP_text, (sidebar_x, 5))
