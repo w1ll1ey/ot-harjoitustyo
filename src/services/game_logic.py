@@ -28,7 +28,7 @@ class GameLogic:
         name = "Remus"
         self.player = Player(start_x, start_y, hp, name)
         self.enemies = []
-        self.enemies.append(Enemy(5, 5, 3, "Filch"))
+        self.enemies.append(Enemy(5, 5, 3, 1, "Filch"))
 
     def move_player(self, dx, dy):
         new_x, new_y = self.player.get_new_location(dx, dy)
@@ -36,7 +36,7 @@ class GameLogic:
         
         for enemy in self.enemies:
             if enemy.x == new_x and enemy.y == new_y:
-                self.player.hp = max(0, self.player.hp - 1)
+                self.player.hp = max(0, self.player.hp - enemy.damage)
                 return
 
         if not wall:
