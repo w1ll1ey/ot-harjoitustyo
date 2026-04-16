@@ -23,7 +23,7 @@ Sovelluksessa on vain yksi käyttäjärooli eli pelaaja.
 ### Pelimekaniikka
 
 - Peli on vuoropohjainen, pelimaailma päivittyy vain pelaajan liikkuessa.
-- Pelaajalla on osumapisteet (HP) jotka näytetään käyttöliittymässä.
+- Pelaajalla on osumapisteet (HP) jotka näytetään käyttöliittymässä. _TEHTY_
 
 ### Käyttöliittymä
 
@@ -32,6 +32,8 @@ Sovelluksessa on vain yksi käyttäjärooli eli pelaaja.
 ## Jatkokehitysideoita
 
 - Erilaisten vihollisten luominen
+- Kerättävien objektien luominen
+- Laajemman legendin luominen
 - Luolaston satunnainen generointi
 
   _Lisää tulossa_
