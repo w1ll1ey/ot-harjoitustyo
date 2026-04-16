@@ -24,6 +24,7 @@ class UI:
         self.textures['#'] = self.sprites.subsurface((32, 32, 16, 16))
         self.textures['.'] = self.sprites.subsurface((208, 32, 16, 16))
         self.textures['@'] = self.sprites.subsurface((240, 48, 16, 16))
+        self.textures['F'] = self.sprites.subsurface((80, 64, 16, 16))
         
         pygame.font.init()
         self.font = pygame.font.SysFont('Courier', 22, bold=True)
@@ -62,6 +63,10 @@ class UI:
         player_x = self.game.player.x * self.cell_size
         player_y = self.game.player.y * self.cell_size
         self.screen.blit(self.textures['@'], (player_x, player_y))
+        
+        for enemy in self.game.enemies:
+            if enemy.name == 'Filch':
+                self.screen.blit(self.textures['F'], (enemy.x * self.cell_size, enemy.y * self.cell_size))
         
         sidebar_x = self.map_width + 15
         HP_text = self.font.render(f"HP: {self.game.player.hp}/10", True, (0, 0, 0))
