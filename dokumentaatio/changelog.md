@@ -15,3 +15,10 @@
 
 - Laajennettu UI-luokan toiminnallisuutta niin, että se luo kartan ja pelaajan jota voi liikutella kartalla
 - Luotu testit Player- ja GameLogic-luokille
+
+## Viikko 5
+
+- Luotu uusi Enemy-luokka, joka vastaa vihollisten käytöksestä
+- Refaktoroitu pelilogiikan koodia ja lisätty siihen sekä UI-luokkaan vihollisen syntyminen
+- Laajennettu UI-luokan toiminnallisuutta näyttämään alkeellinen legend kartan oikealla puolella
+- Laajennettu testaus Enemy-entiteetteihin
