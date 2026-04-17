@@ -1,6 +1,6 @@
 # Ohjelmistotekniikka, harjoitustyö
 
-Sovellus on ruudukkopohjainen, vuoropohjainen luolastoseikkailupeli. Pelaaja ohjaa hahmoa kaksiulotteisessa maailmassa, jossa tavoitteena on tutkia huoneita, välttää/voittaa vihollisia ja kerätä aarteita kerätäkseen pisteitä.
+Sovellus on ruudukkopohjainen, vuoropohjainen luolastoseikkailupeli. Pelaaja ohjaa hahmoa kaksiulotteisessa maailmassa, jossa tavoitteena on tutkia huoneita, välttää/voittaa vihollisia ja kerätä aarteita kerätäkseen pisteitä. Teeman on tarkoitus ammentaa All the Young Dudes-kirjasta, mutta tarkentuu todennäköisesti ajan kanssa.
 
 ## Dokumentaatio
 

@@ -2,7 +2,7 @@
 
 ## Sovelluksen tarkoitus
 
-Sovellus on ruudukkopohjainen, vuoropohjainen luolastoseikkailupeli. Pelaaja ohjaa hahmoa kaksiulotteisessa maailmassa, jossa tavoitteena on tutkia huoneita, välttää/voittaa vihollisia ja kerätä aarteita kerätäkseen pisteitä.
+Sovellus on ruudukkopohjainen, vuoropohjainen luolastoseikkailupeli. Pelaaja ohjaa hahmoa kaksiulotteisessa maailmassa, jossa tavoitteena on tutkia huoneita, välttää/voittaa vihollisia ja kerätä aarteita kerätäkseen pisteitä. Teeman on tarkoitus ammentaa All the Young Dudes-kirjasta, mutta tarkentuu todennäköisesti ajan kanssa.
 
 ## Käyttäjät
 
@@ -31,9 +31,10 @@ Sovelluksessa on vain yksi käyttäjärooli eli pelaaja.
 
 ## Jatkokehitysideoita
 
-- Erilaisten vihollisten luominen
+- Erilaisten vihollisten luominen _TEHTY_ (toistaiseksi vain yksi vihollinen)
 - Kerättävien objektien luominen
 - Laajemman legendin luominen
 - Luolaston satunnainen generointi
+- Eri pelattavat hahmot
 
   _Lisää tulossa_
