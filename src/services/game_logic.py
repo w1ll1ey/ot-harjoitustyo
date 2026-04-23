@@ -1,3 +1,4 @@
+import textwrap
 from entities.level import Level
 from entities.player import Player
 from entities.enemy import Enemy
@@ -5,6 +6,7 @@ from entities.enemy import Enemy
 
 class GameLogic:
     def __init__(self):
+        self.log = []
         self.level = Level([
             [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
             [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1],
@@ -40,6 +42,7 @@ class GameLogic:
             if enemy.x == new_x and enemy.y == new_y:
                 bumped_enemy = True
                 enemy.hp -= self.player.damage
+                self.add_message(f"Remus attacks {enemy.name}! {enemy.name} has {enemy.hp} HP left.")
                 
                 if enemy.hp <= 0:
                     self.enemies.remove(enemy)
@@ -54,6 +57,14 @@ class GameLogic:
             
             if enemy_new_x == self.player.x and enemy_new_y == self.player.y:
                 self.player.hp = max(0, self.player.hp - enemy.damage)
+                self.add_message(f"{enemy.name} attacks Remus! Remus has {self.player.hp} HP left.")
                 
             elif not self.level.is_wall(enemy_new_x, enemy_new_y):
                 enemy.move(move)
+        
+    def add_message(self, text):
+        wrapped_lines = textwrap.wrap(text, width=45)
+        self.log.extend(wrapped_lines)
+
+        while len(self.log) > 5:
+            self.log.pop(0)

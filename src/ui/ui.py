@@ -9,11 +9,12 @@ class UI:
         self.cell_size = 16
         self.map_width = len(self.game.level.matrix[0]) * self.cell_size
         self.map_height = len(self.game.level.matrix) * self.cell_size
+        self.sidebar_width = 500
         self.clock = pygame.time.Clock()
 
         pygame.init()
         self.screen = pygame.display.set_mode(
-            (self.map_width + 150, self.map_height))
+            (self.map_width + self.sidebar_width, self.map_height))
 
         current_dir = os.path.dirname(__file__)
         project_root = os.path.join(current_dir, "..")
@@ -29,6 +30,7 @@ class UI:
 
         pygame.font.init()
         self.font = pygame.font.SysFont('Courier', 22, bold=True)
+        self.log_font = pygame.font.SysFont('Courier', 18, bold=True)
 
     def start(self):
         while True:
@@ -78,5 +80,13 @@ class UI:
             f"HP: {self.game.player.hp}/10", True, (0, 0, 0))
         if self.game.player.name == "Remus":
             player_text = self.font.render("@ = Remus", True, (0, 0, 0))
+            
         self.screen.blit(HP_text, (sidebar_x, 5))
         self.screen.blit(player_text, (sidebar_x, 190))
+        
+        current_log_y = 50
+        
+        for message in self.game.log:
+                message_text = self.log_font.render(message, True, (0, 0, 0))
+                self.screen.blit(message_text, (sidebar_x, current_log_y))
+                current_log_y += 20
