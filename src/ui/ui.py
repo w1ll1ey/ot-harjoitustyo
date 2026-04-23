@@ -38,6 +38,10 @@ class UI:
                 if event.type == pygame.QUIT:
                     return
                 elif event.type == pygame.KEYDOWN:
+                    if self.game.game_over:
+                        if event.key == pygame.K_RETURN:
+                            self.game = GameLogic()
+                        continue
                     if event.key == pygame.K_w or event.key == pygame.K_UP:
                         self.game.move_player(0, -1)
                     elif event.key == pygame.K_a or event.key == pygame.K_LEFT:

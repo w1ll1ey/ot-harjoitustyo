@@ -6,6 +6,7 @@ from entities.enemy import Enemy
 
 class GameLogic:
     def __init__(self):
+        self.game_over = False
         self.log = []
         self.level = Level([
             [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
@@ -61,6 +62,10 @@ class GameLogic:
                 
             elif not self.level.is_wall(enemy_new_x, enemy_new_y):
                 enemy.move(move)
+        
+        if self.player.hp <= 0:
+            self.game_over = True
+            self.add_message("GAME OVER! Press Enter to restart.")
         
     def add_message(self, text):
         wrapped_lines = textwrap.wrap(text, width=45)
