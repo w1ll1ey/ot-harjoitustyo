@@ -27,6 +27,7 @@ class UI:
         self.textures['.'] = self.sprites.subsurface((208, 32, 16, 16))
         self.textures['@'] = self.sprites.subsurface((240, 48, 16, 16))
         self.textures['F'] = self.sprites.subsurface((80, 64, 16, 16))
+        self.textures['+'] = self.sprites.subsurface((160, 32, 16, 16))
 
         pygame.font.init()
         self.font = pygame.font.SysFont('Courier', 22, bold=True)
@@ -42,7 +43,11 @@ class UI:
                         if event.key == pygame.K_RETURN:
                             self.game = GameLogic()
                         continue
-                    if event.key == pygame.K_w or event.key == pygame.K_UP:
+                    elif self.game.game_won:
+                        if event.key == pygame.K_RETURN:
+                            self.game = GameLogic()
+                        continue
+                    elif event.key == pygame.K_w or event.key == pygame.K_UP:
                         self.game.move_player(0, -1)
                     elif event.key == pygame.K_a or event.key == pygame.K_LEFT:
                         self.game.move_player(-1, 0)
@@ -66,6 +71,8 @@ class UI:
                     self.screen.blit(self.textures['#'], (pixel_x, pixel_y))
                 if column == 0:
                     self.screen.blit(self.textures['.'], (pixel_x, pixel_y))
+                if column == 2:
+                    self.screen.blit(self.textures['+'], (pixel_x, pixel_y))
 
         player_x = self.game.player.x * self.cell_size
         player_y = self.game.player.y * self.cell_size

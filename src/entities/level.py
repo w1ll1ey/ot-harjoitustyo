@@ -4,3 +4,6 @@ class Level:
 
     def is_wall(self, x, y):
         return self.matrix[y][x] == 1
+    
+    def is_door(self, x, y):
+        return self.matrix[y][x] == 2
