@@ -4,7 +4,7 @@ from entities.player import Player
 
 class TestPlayer(unittest.TestCase):
     def setUp(self):
-        self.player = Player(4, 4, 5, "Test")
+        self.player = Player(4, 4, 5, 1, "Test")
 
     def test_get_new_location_returns_right_location(self):
         self.assertEqual(self.player.get_new_location(1, 0), (5, 4))

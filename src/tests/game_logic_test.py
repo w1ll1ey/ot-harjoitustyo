@@ -14,7 +14,7 @@ class TestGameLogic(unittest.TestCase):
             [1, 0, 0, 1],
             [1, 1, 1, 1]
         ])
-        test_player = Player(1, 1, 5, "Test")
+        test_player = Player(1, 1, 5, 1, "Test")
 
         self.game.level = test_map
         self.game.player = test_player
