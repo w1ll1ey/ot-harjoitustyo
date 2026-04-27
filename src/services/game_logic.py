@@ -5,7 +5,21 @@ from entities.enemy import Enemy
 
 
 class GameLogic:
+    """Represents the current game session.
+    
+    Attributes:
+        game_over: True if the player HP reaches 0.
+        game_won: True if the player walks on a door tile.
+        log: A list of messages about recent game events.
+        level: The current map layout.
+        player: The playable character entity.
+        enemies: A list of currently active enemy entities.
+    """
+    
     def __init__(self):
+        """Creates the game session.
+        """
+        
         self.game_over = False
         self.game_won = False
         self.log = []
@@ -36,6 +50,13 @@ class GameLogic:
         self.enemies.append(Enemy(5, 5, hp=3, damage=1, name="Filch"))
 
     def move_player(self, dx, dy):
+        """Handles the turn-based logic of the game. Updates the world according to move made by the player.
+
+        Args:
+            dx: Move made on the x axis.
+            dy: Move made on the y axis.
+        """
+        
         new_x, new_y = self.player.get_new_location(dx, dy)
         wall = self.level.is_wall(new_x, new_y)
         door = self.level.is_door(new_x, new_y)
@@ -74,6 +95,14 @@ class GameLogic:
             self.add_message("GAME OVER! Press Enter to restart.")
         
     def add_message(self, text):
+        """Handles adding messages about events to the log list. 
+        
+        Maintains a maximum length of five messages for the list.
+
+        Args:
+            text: Added message as a string.
+        """
+        
         wrapped_lines = textwrap.wrap(text, width=45)
         self.log.extend(wrapped_lines)
 

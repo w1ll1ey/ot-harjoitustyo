@@ -4,7 +4,29 @@ from services.game_logic import GameLogic
 
 
 class UI:
+    """Handles the user interface of the game.
+    
+    Attributes:
+        game: The current game session.
+        cell_size: Size of one game tile in pixels.
+        map_width: Width of the visible map in pixels.
+        map_height: Height of the visible map in pixels.
+        sidebar_width: Width of the sidebar in pixels.
+        clock: Init for the game clock.
+        screen: Init pygame display window.
+        sprites: Ascii tileset for the textures.
+        textures: Dictionary containing textures for specific tiles.
+        font: General font for the user interface.
+        font_log: Font used in printing the event messages.
+    """
+    
     def __init__(self, gamelogic: GameLogic):
+        """Initializes the pygame session.
+
+        Args:
+            gamelogic: The current game session.
+        """
+        
         self.game = gamelogic
         self.cell_size = 16
         self.map_width = len(self.game.level.matrix[0]) * self.cell_size
@@ -34,6 +56,9 @@ class UI:
         self.log_font = pygame.font.SysFont('Courier', 18, bold=True)
 
     def start(self):
+        """Launches the pygame session and handles user inputs.
+        """
+        
         while True:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -63,6 +88,9 @@ class UI:
             self.clock.tick(60)
 
     def draw(self):
+        """Renders currently visible textures to the screen.
+        """
+        
         for y_index, row in enumerate(self.game.level.matrix):
             for x_index, column in enumerate(row):
                 pixel_x = x_index * self.cell_size
