@@ -5,7 +5,7 @@ from services.game_logic import GameLogic
 
 class UI:
     """Handles the user interface of the game.
-    
+
     Attributes:
         game: The current game session.
         cell_size: Size of one game tile in pixels.
@@ -19,14 +19,14 @@ class UI:
         font: General font for the user interface.
         font_log: Font used in printing the event messages.
     """
-    
+
     def __init__(self, gamelogic: GameLogic):
         """Initializes the pygame session.
 
         Args:
             gamelogic: The current game session.
         """
-        
+
         self.game = gamelogic
         self.cell_size = 16
         self.map_width = len(self.game.level.matrix[0]) * self.cell_size
@@ -58,7 +58,7 @@ class UI:
     def start(self):
         """Launches the pygame session and handles user inputs.
         """
-        
+
         while True:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -90,7 +90,7 @@ class UI:
     def draw(self):
         """Renders currently visible textures to the screen.
         """
-        
+
         for y_index, row in enumerate(self.game.level.matrix):
             for x_index, column in enumerate(row):
                 pixel_x = x_index * self.cell_size
@@ -119,13 +119,13 @@ class UI:
             f"HP: {self.game.player.hp}/10", True, (0, 0, 0))
         if self.game.player.name == "Remus":
             player_text = self.font.render("@ = Remus", True, (0, 0, 0))
-            
+
         self.screen.blit(HP_text, (sidebar_x, 5))
         self.screen.blit(player_text, (sidebar_x, 190))
-        
+
         current_log_y = 50
-        
+
         for message in self.game.log:
-                message_text = self.log_font.render(message, True, (0, 0, 0))
-                self.screen.blit(message_text, (sidebar_x, current_log_y))
-                current_log_y += 20
+            message_text = self.log_font.render(message, True, (0, 0, 0))
+            self.screen.blit(message_text, (sidebar_x, current_log_y))
+            current_log_y += 20

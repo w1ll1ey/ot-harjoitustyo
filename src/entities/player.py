@@ -1,6 +1,6 @@
 class Player:
     """Represents the playable character entity.
-    
+
     Attributes:
         start_x: Player spawn x coordinate.
         start_y: Player spawn y coordinate.
@@ -8,8 +8,8 @@ class Player:
         damage: Damage dealt by player attacks.
         name: Name of the player. 
     """
-    
-    def __init__(self, start_x, start_y, hp, damage, name):
+
+    def __init__(self, start_x, start_y, *, hp, damage, name):
         """Creates the player entity.
 
         Args:
@@ -19,7 +19,7 @@ class Player:
             damage: Damage dealt by player attacks.
             name: Name of the player. 
         """
-        
+
         self.x = start_x
         self.y = start_y
         self.hp = hp
@@ -36,7 +36,7 @@ class Player:
         Returns:
             New location as two integers x, y.
         """
-        
+
         return self.x + dx, self.y + dy
 
     def move(self, dx, dy):
@@ -46,6 +46,6 @@ class Player:
             dx: Change of location on x axis.
             dy: Change of location on y axis.
         """
-        
+
         self.x += dx
         self.y += dy
