@@ -18,7 +18,7 @@ Olet Remus Lupin. Tavoitteenasi on navigoida Tylypahkan sokkeloisia käytäviä 
 
 ## Kontrollit
 
-Peliä pelataan näppäimistöllä. Peli on vuoropohjainen: aina kun teet siirron, viholliset tekevät oman siirtonsa.
+Peliä pelataan näppäimistöllä. Peli on vuoropohjainen: aina kun teet siirron, Voro tekee oman siirtonsa.
 
     - W tai Nuoli ylös: Liiku ylös
 
@@ -32,7 +32,7 @@ Peliä pelataan näppäimistöllä. Peli on vuoropohjainen: aina kun teet siirro
 
 ## Pelinäkymä ja karttamerkit
 
-Ruutu on jaettu kahteen osaan: vasemmalla on varsinainen pelikartta (joka rullaa pelaajan mukana) ja oikealla infopaneeli.
+Ruutu on jaettu kahteen osaan: vasemmalla on varsinainen pelikartta ja oikealla infopaneeli.
 
 ### Karttamerkit
 
@@ -48,7 +48,7 @@ Liikut kartalla, joka koostuu erilaisista ASCII-merkeistä:
 
     . : Lattia
 
-### Infopaneeli (Oikea reuna)
+### Infopaneeli
 
     HP: Näyttää Remuksen nykyiset osumapisteet (esim. 10/10). Jos joudut taisteluun vihollisen kanssa ja HP tippuu nollaan, peli päättyy.
 

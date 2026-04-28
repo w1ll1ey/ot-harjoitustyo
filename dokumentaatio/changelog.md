@@ -22,3 +22,10 @@
 - Refaktoroitu pelilogiikan koodia ja lisätty siihen sekä UI-luokkaan vihollisen syntyminen
 - Laajennettu UI-luokan toiminnallisuutta näyttämään alkeellinen legend kartan oikealla puolella
 - Laajennettu testaus Enemy-entiteetteihin
+
+## Viikko 6
+
+- Luotu taistelumekaniikka, vihollisen tekoäly sekä tapahtumaloki
+- Luotu mahdollisuus pelin häviämiselle ja voittamiselle
+- Laajennettu UI-luokkaa näyttämään tapahtumalokia
+- Laajennettu testaus kattamaan uudet ominaisuudet
