@@ -9,3 +9,7 @@
 | 9.4.  | 1    | koodin laadun varmistus, luokkakaavio, changelogin ym. päivitys                             |
 | 16.4. | 4    | vihollisen luominen, pelilogiikan ja käyttöliitymän laajennus, 100% testit, sekvenssikaavio |
 | 17.4. | 0,5  | changelogin ym. päivitys, release 1                                                         |
+| 23.4. | 4    | vihollisen AI:n, taistelulogiikan ja tapahtumanlokin lisäys                                 |
+| 24.4. | 2,5  | win conditionin lisäys, 100% testit                                                         |
+| 27.4. | 3    | dokumentointia (docstring, arkkitehtuuri)                                                   |
+| 28.4. | 2    | arkkitehtuurin dokumentointi, käyttöohje, changelog ym. päivitys                            |
