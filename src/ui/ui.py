@@ -28,15 +28,17 @@ class UI:
         """
 
         self.game = gamelogic
+        self.viewport_tiles_x = 20
+        self.viewport_tiles_y = 15
         self.cell_size = 16
-        self.map_width = len(self.game.level.matrix[0]) * self.cell_size
-        self.map_height = len(self.game.level.matrix) * self.cell_size
+        self.viewport_width = self.viewport_tiles_x * self.cell_size
+        self.viewport_height = self.viewport_tiles_y * self.cell_size
         self.sidebar_width = 500
         self.clock = pygame.time.Clock()
 
         pygame.init()
         self.screen = pygame.display.set_mode(
-            (self.map_width + self.sidebar_width, self.map_height))
+            (self.viewport_width + self.sidebar_width, self.viewport_height))
 
         current_dir = os.path.dirname(__file__)
         project_root = os.path.join(current_dir, "..")
@@ -49,7 +51,6 @@ class UI:
         self.textures['.'] = self.sprites.subsurface((208, 32, 16, 16))
         self.textures['@'] = self.sprites.subsurface((240, 48, 16, 16))
         self.textures['F'] = self.sprites.subsurface((80, 64, 16, 16))
-        self.textures['+'] = self.sprites.subsurface((160, 32, 16, 16))
         self.textures['S'] = self.sprites.subsurface((32, 80, 16, 16))
         self.textures['R'] = self.sprites.subsurface((16, 80, 16, 16))
         self.textures['+'] = self.sprites.subsurface((160, 32, 16, 16))
@@ -95,28 +96,58 @@ class UI:
         """Renders currently visible textures to the screen.
         """
 
-        for y_index, row in enumerate(self.game.level.matrix):
-            for x_index, column in enumerate(row):
-                pixel_x = x_index * self.cell_size
-                pixel_y = y_index * self.cell_size
-                if column == 1:
+        room_width = len(self.game.level.matrix[0])
+        room_height = len(self.game.level.matrix)
+        if room_width < self.viewport_tiles_x:
+            camera_x = (room_width - self.viewport_tiles_x) // 2
+        else:
+            camera_x = self.game.player.x - (self.viewport_tiles_x // 2)
+            max_x = room_width - self.viewport_tiles_x
+            camera_x = max(0, min(camera_x, max_x))
+        if room_height < self.viewport_tiles_y:
+            camera_y = (room_height - self.viewport_tiles_y) // 2
+        else:
+            camera_y = self.game.player.y - (self.viewport_tiles_y // 2)
+            max_y = room_height - self.viewport_tiles_y
+            camera_y = max(0, min(camera_y, max_y))
+        
+        for screen_y in range(self.viewport_tiles_y):
+            for screen_x in range(self.viewport_tiles_x):
+                tile_x = camera_x + screen_x
+                tile_y = camera_y + screen_y
+                if not self.game.level.in_bounds(tile_x, tile_y):
+                    continue
+                tile = self.game.level.matrix[tile_y][tile_x]
+                
+                pixel_x = screen_x * self.cell_size
+                pixel_y = screen_y * self.cell_size
+                
+                if tile == 1:
                     self.screen.blit(self.textures['#'], (pixel_x, pixel_y))
-                if column == 0:
+                if tile == 0:
                     self.screen.blit(self.textures['.'], (pixel_x, pixel_y))
-                if column == 2:
+                if tile == 2:
                     self.screen.blit(self.textures['+'], (pixel_x, pixel_y))
+                if tile == 3:
+                    self.screen.blit(self.textures['?'], (pixel_x, pixel_y))
 
-        player_x = self.game.player.x * self.cell_size
-        player_y = self.game.player.y * self.cell_size
+        player_x = (self.game.player.x - camera_x) * self.cell_size
+        player_y = (self.game.player.y - camera_y) * self.cell_size
         self.screen.blit(self.textures['@'], (player_x, player_y))
 
-        sidebar_x = self.map_width + 15
+        sidebar_x = self.viewport_width + 15
         current_legend_y = 215
         drawn_names = []
 
         for enemy in self.game.enemies:
+            enemy_x = enemy.x - camera_x
+            enemy_y = enemy.y - camera_y
+            enemy_pixel_x = enemy_x * self.cell_size
+            enemy_pixel_y = enemy_y * self.cell_size
+            if enemy_x < 0 or enemy_x >= self.viewport_tiles_x or enemy_y < 0 or enemy_y >= self.viewport_tiles_y: 
+                continue
             self.screen.blit(
-                self.textures[enemy.name[0]], (enemy.x * self.cell_size, enemy.y * self.cell_size))
+                self.textures[enemy.name[0]], (enemy_pixel_x, enemy_pixel_y))
             if enemy.name not in drawn_names:
                 enemy_text = self.font.render(f"{enemy.name[0]} = {enemy.name}", True, (0, 0, 0))
                 self.screen.blit(enemy_text, (sidebar_x, current_legend_y))

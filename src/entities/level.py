@@ -44,6 +44,9 @@ class Level:
                 self.matrix[y][x] = theme["floor_tile"]
                 if (x, y) != self.player_spawn:
                     self.free_tiles.append((x, y))
+    
+    def in_bounds(self, x, y):
+        return 0 <= y < len(self.matrix) and 0 <= x < len(self.matrix[0])
                     
     def is_wall(self, x, y):
         """Checks if the given coordinate represents a wall on the map.
