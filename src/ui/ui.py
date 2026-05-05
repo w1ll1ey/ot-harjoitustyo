@@ -50,6 +50,10 @@ class UI:
         self.textures['@'] = self.sprites.subsurface((240, 48, 16, 16))
         self.textures['F'] = self.sprites.subsurface((80, 64, 16, 16))
         self.textures['+'] = self.sprites.subsurface((160, 32, 16, 16))
+        self.textures['S'] = self.sprites.subsurface((32, 80, 16, 16))
+        self.textures['R'] = self.sprites.subsurface((16, 80, 16, 16))
+        self.textures['+'] = self.sprites.subsurface((160, 32, 16, 16))
+        self.textures['?'] = self.sprites.subsurface((224, 48, 16, 16))
 
         pygame.font.init()
         self.font = pygame.font.SysFont('Courier', 22, bold=True)
@@ -107,13 +111,17 @@ class UI:
         self.screen.blit(self.textures['@'], (player_x, player_y))
 
         sidebar_x = self.map_width + 15
+        current_legend_y = 215
+        drawn_names = []
 
         for enemy in self.game.enemies:
-            if enemy.name == 'Filch':
-                self.screen.blit(
-                    self.textures['F'], (enemy.x * self.cell_size, enemy.y * self.cell_size))
-                enemy_text = self.font.render("F = Filch", True, (0, 0, 0))
-                self.screen.blit(enemy_text, (sidebar_x, 215))
+            self.screen.blit(
+                self.textures[enemy.name[0]], (enemy.x * self.cell_size, enemy.y * self.cell_size))
+            if enemy.name not in drawn_names:
+                enemy_text = self.font.render(f"{enemy.name[0]} = {enemy.name}", True, (0, 0, 0))
+                self.screen.blit(enemy_text, (sidebar_x, current_legend_y))
+                drawn_names.append(enemy.name)
+                current_legend_y += 20
 
         HP_text = self.font.render(
             f"HP: {self.game.player.hp}/10", True, (0, 0, 0))

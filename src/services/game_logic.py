@@ -1,7 +1,10 @@
+import random
 import textwrap
 from entities.level import Level
+from data.level_themes import all_themes
 from entities.player import Player
 from entities.enemy import Enemy
+from data.hostile_mobs import hostile_mobs
 
 
 class GameLogic:
@@ -23,28 +26,29 @@ class GameLogic:
         self.game_over = False
         self.game_won = False
         self.log = []
-        self.level = Level([
-            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-            [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1],
-            [1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1],
-            [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1],
-            [1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1],
-            [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1],
-            [1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1],
-            [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-            [1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-            [1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-            [1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1],
-            [1, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
-            [1, 0, 0, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1],
-            [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2],
-            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-        ])
-        start_x = 1
-        start_y = 1
-        self.player = Player(start_x, start_y, hp=10, damage=1, name="Remus")
+        
+        self.generate_room()
+        
+        self.player = Player(self.level.player_spawn[0], self.level.player_spawn[1], hp=10, damage=1, name="Remus")
+        
+    def generate_room(self):
+        self.theme = random.choice(all_themes)
+        self.level = Level(self.theme)
         self.enemies = []
-        self.enemies.append(Enemy(5, 5, hp=3, damage=1, name="Filch"))
+        
+        spawnpoints = random.sample(self.level.free_tiles, 2)
+        enemy_pool = self.theme.get("enemy_pool", [])
+        
+        if len(enemy_pool) > 0:
+            enemy_name = random.choice(enemy_pool)
+            stats = hostile_mobs[enemy_name]
+            self.enemies.append(Enemy(
+                spawnpoints[1][0], 
+                spawnpoints[1][1], 
+                hp = stats["hp"], 
+                damage = stats["damage"], 
+                name = enemy_name
+            ))
 
     def move_player(self, dx, dy):
         """Handles the turn-based logic of the game. 
