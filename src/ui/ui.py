@@ -1,6 +1,7 @@
 import pygame
 import os
 from services.game_logic import GameLogic
+from services.world_state import WorldState
 
 
 class UI:
@@ -71,11 +72,13 @@ class UI:
                 elif event.type == pygame.KEYDOWN:
                     if self.game.game_over:
                         if event.key == pygame.K_RETURN:
-                            self.game = GameLogic()
+                            world_state = WorldState()
+                            self.game = GameLogic(world_state)
                         continue
                     elif self.game.game_won:
                         if event.key == pygame.K_RETURN:
-                            self.game = GameLogic()
+                            world_state = WorldState()
+                            self.game = GameLogic(world_state)
                         continue
                     elif event.key == pygame.K_w or event.key == pygame.K_UP:
                         self.game.move_player(0, -1)

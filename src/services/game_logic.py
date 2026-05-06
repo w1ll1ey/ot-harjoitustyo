@@ -19,10 +19,12 @@ class GameLogic:
         enemies: A list of currently active enemy entities.
     """
 
-    def __init__(self):
+    def __init__(self, world_state):
         """Creates the game session.
         """
 
+        self.world_state = world_state
+        self.room = world_state.room
         self.game_over = False
         self.game_won = False
         self.log = []
@@ -49,6 +51,14 @@ class GameLogic:
                 damage = stats["damage"], 
                 name = enemy_name
             ))
+            
+    def next_room(self):
+        self.world_state.room += 1
+        
+        self.generate_room()
+        
+        self.player.x = self.level.player_spawn[0]
+        self.player.y = self.level.player_spawn[1]
 
     def move_player(self, dx, dy):
         """Handles the turn-based logic of the game. 
@@ -80,8 +90,7 @@ class GameLogic:
         if not wall and not bumped_enemy:
             self.player.move(dx, dy)
             if door:
-                self.game_won = True
-                self.add_message("Remus escaped! Press Enter to restart.")
+                self.next_room()
                 return
 
         for enemy in self.enemies:
