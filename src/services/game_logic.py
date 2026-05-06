@@ -5,6 +5,7 @@ from data.level_themes import all_themes
 from entities.player import Player
 from entities.enemy import Enemy
 from data.hostile_mobs import hostile_mobs
+from data.lore_deck import lore_items
 
 
 class GameLogic:
@@ -51,6 +52,14 @@ class GameLogic:
                 damage = stats["damage"], 
                 name = enemy_name
             ))
+        
+        raw_lore_pool = self.theme.get("lore_pool", [])
+        self.lore_pool = []
+        for lore in raw_lore_pool:
+            if self.world_state.meets_prerequisites(lore_items[lore]["prerequisites"]):
+                self.lore_pool.append(lore)
+        if len(self.lore_pool) > 0:
+            self.level.matrix[spawnpoints[0][1]][spawnpoints[0][0]] = 3
             
     def next_room(self):
         self.world_state.room += 1
@@ -73,6 +82,7 @@ class GameLogic:
         new_x, new_y = self.player.get_new_location(dx, dy)
         wall = self.level.is_wall(new_x, new_y)
         door = self.level.is_door(new_x, new_y)
+        lore = self.level.is_lore(new_x, new_y)
         bumped_enemy = False
 
         for enemy in self.enemies:
@@ -92,6 +102,12 @@ class GameLogic:
             if door:
                 self.next_room()
                 return
+            if lore:
+                lore_name = random.choice(self.lore_pool)
+                self.add_message(lore_items[lore_name]["text"])
+                if len(lore_items[lore_name]["tags"]) > 0:
+                    self.world_state.add_tags(lore_items[lore_name]["tags"])
+                self.level.matrix[new_y][new_x] = 0
 
         for enemy in self.enemies:
             enemy_new_x, enemy_new_y, move = enemy.get_new_location(

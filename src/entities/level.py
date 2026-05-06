@@ -73,3 +73,8 @@ class Level:
         """
 
         return self.matrix[y][x] == 2
+    
+    def is_lore(self, x, y):
+        if not self.in_bounds(x, y):
+            return False
+        return self.matrix[y][x] == 3
