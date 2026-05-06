@@ -70,12 +70,12 @@ class UI:
                 if event.type == pygame.QUIT:
                     return
                 elif event.type == pygame.KEYDOWN:
-                    if self.game.game_over:
+                    if self.game.world_state.game_over:
                         if event.key == pygame.K_RETURN:
                             world_state = WorldState()
                             self.game = GameLogic(world_state)
                         continue
-                    elif self.game.game_won:
+                    elif self.game.world_state.game_won:
                         if event.key == pygame.K_RETURN:
                             world_state = WorldState()
                             self.game = GameLogic(world_state)

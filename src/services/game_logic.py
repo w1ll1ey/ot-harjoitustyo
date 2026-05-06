@@ -28,9 +28,6 @@ class GameLogic:
         """
 
         self.world_state = world_state
-        self.room = world_state.room
-        self.game_over = False
-        self.game_won = False
         self.log = []
         
         self.generate_room()
@@ -38,7 +35,11 @@ class GameLogic:
         self.player = Player(self.level.player_spawn[0], self.level.player_spawn[1], hp=10, damage=1, name="Remus")
         
     def generate_room(self):
-        self.theme = random.choice(all_themes)
+        filtered_themes = []
+        for theme in all_themes:
+            if self.world_state.room >= theme["min_room_number"]:
+                filtered_themes.append(theme)
+        self.theme = random.choice(filtered_themes)
         self.level = Level(self.theme)
         self.enemies = []
         self.friendlys = []
@@ -61,7 +62,13 @@ class GameLogic:
         self.lore_pool = []
         for lore in raw_lore_pool:
             if self.world_state.meets_prerequisites(lore_items[lore]["prerequisites"]):
-                self.lore_pool.append(lore)
+                not_collected = True
+                for tag in lore_items[lore]["tags"]:
+                    if tag in self.world_state.tags:
+                        not_collected = False
+                        break
+                if not_collected:
+                    self.lore_pool.append(lore)
         if len(self.lore_pool) > 0:
             self.level.matrix[spawnpoints[0][1]][spawnpoints[0][0]] = 3
             
@@ -70,6 +77,8 @@ class GameLogic:
         for friendly in raw_friendly_pool:
             if self.world_state.meets_prerequisites(friendlys[friendly]["prerequisites"]):
                 self.friendly_pool.append(friendly)
+                if len(friendlys[friendly]["tags"]) > 0:
+                    self.world_state.add_tags(friendlys[friendly]["tags"])
         
         if len(self.friendly_pool) > 0:
             friendly_name = random.choice(self.friendly_pool)
@@ -116,13 +125,18 @@ class GameLogic:
         bumped_entity = False
         
         for friendly in self.friendlys:
-            if friendly.x == new_x and friendly.y == new_y:
+            friendly_new_x, friendly_new_y, friendly_move = friendly.get_new_location()
+            
+            if friendly.x == new_x and friendly.y == new_y or friendly_new_x == new_x and friendly_new_y == new_y:
                 bumped_entity = True
                 self.add_message(friendly.dialogue)
                 if len(friendly.tags) > 0:
                     self.world_state.add_tags(friendly.tags)
                 
-                break
+                continue
+            
+            elif not self.level.is_wall(friendly_new_x, friendly_new_y):
+                friendly.move(friendly_move)
 
         for enemy in self.enemies:
             if enemy.x == new_x and enemy.y == new_y:
@@ -161,7 +175,7 @@ class GameLogic:
                 enemy.move(move)
 
         if self.player.hp <= 0:
-            self.game_over = True
+            self.world_state.game_over = True
             self.add_message("GAME OVER! Press Enter to restart.")
 
     def add_message(self, text):
