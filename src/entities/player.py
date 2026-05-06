@@ -1,4 +1,6 @@
-class Player:
+from entities.character import Character
+
+class Player(Character):
     """Represents the playable character entity.
 
     Attributes:
@@ -20,13 +22,9 @@ class Player:
             name: Name of the player. 
         """
 
-        self.x = start_x
-        self.y = start_y
-        self.hp = hp
-        self.damage = damage
-        self.name = name
+        super().__init__(start_x, start_y, hp=hp, damage=damage, name=name)
 
-    def get_new_location(self, dx, dy):
+    def get_new_location(self, dxdy):
         """Returns new location of the player based on the move made.
 
         Args:
@@ -37,15 +35,4 @@ class Player:
             New location as two integers x, y.
         """
 
-        return self.x + dx, self.y + dy
-
-    def move(self, dx, dy):
-        """Changes the location of the player based on the move made.
-
-        Args:
-            dx: Change of location on x axis.
-            dy: Change of location on y axis.
-        """
-
-        self.x += dx
-        self.y += dy
+        return self.x + dxdy[0], self.y + dxdy[1]

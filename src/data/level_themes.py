@@ -26,7 +26,7 @@ gryffindor_dormitory = {
     "max_height": 10,
     "wall_tile": 1,
     "floor_tile": 0,
-    "friendly_pool": ["Sirius", "Peter", "James"],
+    "friendly_pool": ["Sirius"],
     "lore_pool": ["Record", "Cigarette box", "Lighter"]
 }
 

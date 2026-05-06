@@ -81,13 +81,13 @@ class UI:
                             self.game = GameLogic(world_state)
                         continue
                     elif event.key == pygame.K_w or event.key == pygame.K_UP:
-                        self.game.move_player(0, -1)
+                        self.game.move_player((0, -1))
                     elif event.key == pygame.K_a or event.key == pygame.K_LEFT:
-                        self.game.move_player(-1, 0)
+                        self.game.move_player((-1, 0))
                     elif event.key == pygame.K_s or event.key == pygame.K_DOWN:
-                        self.game.move_player(0, 1)
+                        self.game.move_player((0, 1))
                     elif event.key == pygame.K_d or event.key == pygame.K_RIGHT:
-                        self.game.move_player(1, 0)
+                        self.game.move_player((1, 0))
 
             self.screen.fill((235, 225, 195))
             self.draw()
@@ -142,19 +142,19 @@ class UI:
         current_legend_y = 215
         drawn_names = []
 
-        for enemy in self.game.enemies:
-            enemy_x = enemy.x - camera_x
-            enemy_y = enemy.y - camera_y
-            enemy_pixel_x = enemy_x * self.cell_size
-            enemy_pixel_y = enemy_y * self.cell_size
-            if enemy_x < 0 or enemy_x >= self.viewport_tiles_x or enemy_y < 0 or enemy_y >= self.viewport_tiles_y: 
+        for character in self.game.enemies + self.game.friendlys:
+            character_x = character.x - camera_x
+            character_y = character.y - camera_y
+            character_pixel_x = character_x * self.cell_size
+            character_pixel_y = character_y * self.cell_size
+            if character_x < 0 or character_x >= self.viewport_tiles_x or character_y < 0 or character_y >= self.viewport_tiles_y: 
                 continue
             self.screen.blit(
-                self.textures[enemy.name[0]], (enemy_pixel_x, enemy_pixel_y))
-            if enemy.name not in drawn_names:
-                enemy_text = self.font.render(f"{enemy.name[0]} = {enemy.name}", True, (0, 0, 0))
+                self.textures[character.name[0]], (character_pixel_x, character_pixel_y))
+            if character.name not in drawn_names:
+                enemy_text = self.font.render(f"{character.name[0]} = {character.name}", True, (0, 0, 0))
                 self.screen.blit(enemy_text, (sidebar_x, current_legend_y))
-                drawn_names.append(enemy.name)
+                drawn_names.append(character.name)
                 current_legend_y += 20
 
         HP_text = self.font.render(

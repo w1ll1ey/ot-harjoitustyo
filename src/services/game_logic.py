@@ -4,8 +4,11 @@ from entities.level import Level
 from data.level_themes import all_themes
 from entities.player import Player
 from entities.enemy import Enemy
+from entities.friendly import Friendly
 from data.hostile_mobs import hostile_mobs
 from data.lore_deck import lore_items
+from data.lore_deck import friendlys
+from data.lore_deck import dialogue_tree
 
 
 class GameLogic:
@@ -38,8 +41,9 @@ class GameLogic:
         self.theme = random.choice(all_themes)
         self.level = Level(self.theme)
         self.enemies = []
+        self.friendlys = []
         
-        spawnpoints = random.sample(self.level.free_tiles, 2)
+        spawnpoints = random.sample(self.level.free_tiles, 3)
         enemy_pool = self.theme.get("enemy_pool", [])
         
         if len(enemy_pool) > 0:
@@ -61,6 +65,32 @@ class GameLogic:
         if len(self.lore_pool) > 0:
             self.level.matrix[spawnpoints[0][1]][spawnpoints[0][0]] = 3
             
+        raw_friendly_pool = self.theme.get("friendly_pool", [])
+        self.friendly_pool = []
+        for friendly in raw_friendly_pool:
+            if self.world_state.meets_prerequisites(friendlys[friendly]["prerequisites"]):
+                self.friendly_pool.append(friendly)
+        
+        if len(self.friendly_pool) > 0:
+            friendly_name = random.choice(self.friendly_pool)
+            for dialogue in dialogue_tree[friendly_name].values():
+                if self.world_state.meets_prerequisites(dialogue["prerequisites"]):
+                    chosen_dialogue = dialogue["text"]
+                    tags = dialogue["tags"]
+                    
+                    break
+                    
+            self.friendlys.append(Friendly(
+                spawnpoints[2][0], 
+                spawnpoints[2][1],
+                hp = 0,
+                damage = 0,
+                name = friendly_name,
+                dialogue = chosen_dialogue,
+                tags = tags
+            ))
+            
+            
     def next_room(self):
         self.world_state.room += 1
         
@@ -69,7 +99,7 @@ class GameLogic:
         self.player.x = self.level.player_spawn[0]
         self.player.y = self.level.player_spawn[1]
 
-    def move_player(self, dx, dy):
+    def move_player(self, dxdy):
         """Handles the turn-based logic of the game. 
         
         Updates the world according to move made by the player.
@@ -79,15 +109,24 @@ class GameLogic:
             dy: Move made on the y axis.
         """
 
-        new_x, new_y = self.player.get_new_location(dx, dy)
+        new_x, new_y = self.player.get_new_location(dxdy)
         wall = self.level.is_wall(new_x, new_y)
         door = self.level.is_door(new_x, new_y)
         lore = self.level.is_lore(new_x, new_y)
-        bumped_enemy = False
+        bumped_entity = False
+        
+        for friendly in self.friendlys:
+            if friendly.x == new_x and friendly.y == new_y:
+                bumped_entity = True
+                self.add_message(friendly.dialogue)
+                if len(friendly.tags) > 0:
+                    self.world_state.add_tags(friendly.tags)
+                
+                break
 
         for enemy in self.enemies:
             if enemy.x == new_x and enemy.y == new_y:
-                bumped_enemy = True
+                bumped_entity = True
                 enemy.hp -= self.player.damage
                 self.add_message(
                     f"Remus attacks {enemy.name}! {enemy.name} has {enemy.hp} HP left.")
@@ -97,8 +136,8 @@ class GameLogic:
 
                 break
 
-        if not wall and not bumped_enemy:
-            self.player.move(dx, dy)
+        if not wall and not bumped_entity:
+            self.player.move(dxdy)
             if door:
                 self.next_room()
                 return
