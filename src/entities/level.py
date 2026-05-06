@@ -58,7 +58,9 @@ class Level:
         Returns:
             True if the given coordinate is a wall tile, False if it isn't.
         """
-
+        
+        if not self.in_bounds(x, y):
+            return True
         return self.matrix[y][x] == 1
 
     def is_door(self, x, y):
@@ -71,7 +73,9 @@ class Level:
         Returns:
             True if the given coordinate is a door tile, False if it isn't.
         """
-
+        
+        if not self.in_bounds(x, y):
+            return False
         return self.matrix[y][x] == 2
     
     def is_lore(self, x, y):
