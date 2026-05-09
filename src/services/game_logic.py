@@ -23,16 +23,26 @@ class GameLogic:
         enemies: A list of currently active enemy entities.
     """
 
-    def __init__(self, world_state):
+    def __init__(self, world_state, level=None, player=None):
         """Creates the game session.
         """
-
+            
         self.world_state = world_state
         self.log = []
         
-        self.generate_room()
+        if level:
+            self.level = level
+            self.enemies = []
+            self.friendlys = []
         
-        self.player = Player(self.level.player_spawn[0], self.level.player_spawn[1], hp=10, damage=1, name="Remus")
+        else:
+            self.generate_room()
+        
+        if player:
+            self.player = player
+        
+        else:
+            self.player = Player(self.level.player_spawn[0], self.level.player_spawn[1], hp=10, damage=1, name="Remus")
         
     def generate_room(self):
         filtered_themes = []
