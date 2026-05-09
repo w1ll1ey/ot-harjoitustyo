@@ -200,5 +200,5 @@ class GameLogic:
         wrapped_lines = textwrap.wrap(text, width=40)
         self.log.extend(wrapped_lines)
 
-        while len(self.log) > 5:
+        while len(self.log) > 6:
             self.log.pop(0)
