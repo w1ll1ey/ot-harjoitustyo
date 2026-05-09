@@ -187,7 +187,7 @@ class GameLogic:
             text: Added message as a string.
         """
 
-        wrapped_lines = textwrap.wrap(text, width=45)
+        wrapped_lines = textwrap.wrap(text, width=40)
         self.log.extend(wrapped_lines)
 
         while len(self.log) > 5:
