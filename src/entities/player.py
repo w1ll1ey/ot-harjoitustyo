@@ -2,10 +2,12 @@ from entities.character import Character
 
 class Player(Character):
     """Represents the playable character entity.
+    
+    Inherits from Character and adds player-specific location-finding logic.
 
-    Attributes:
-        start_x: Player spawn x coordinate.
-        start_y: Player spawn y coordinate.
+    Inherited Attributes:
+        x: Current x coordinate.
+        y: Current y coordinate.
         hp: Player hitpoints.
         damage: Damage dealt by player attacks.
         name: Name of the player. 

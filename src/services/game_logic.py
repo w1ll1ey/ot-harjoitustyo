@@ -12,19 +12,27 @@ from data.lore_deck import dialogue_tree
 
 
 class GameLogic:
-    """Represents the current game session.
+    """Represents the current game session. Controls the game state and turn-based engine.
 
     Attributes:
-        game_over: True if the player HP reaches 0.
-        game_won: True if the player walks on a door tile.
+        world_state: State containing and handling the procedural narrative.
         log: A list of messages about recent game events.
-        level: The current map layout.
+        level: The current room layout.
         player: The playable character entity.
         enemies: A list of currently active enemy entities.
+        friendlys: A list of currently active non-hostile entities.
+        theme: Theme used to generate the current room.
+        lore_pool: Available lore items in the current room.
+        friendly_pool: Available non-hostile entities in the current room.
     """
 
     def __init__(self, world_state, level=None, player=None):
         """Creates the game session.
+        
+        Args:
+            world_state: State containing and handling the procedural narrative.
+            level: Optional pre-built level, currently used only for testing.
+            player: Optional pre-built player entity, currently used only for testing.
         """
             
         self.world_state = world_state
@@ -124,8 +132,7 @@ class GameLogic:
         Updates the world according to move made by the player.
 
         Args:
-            dx: Move made on the x axis.
-            dy: Move made on the y axis.
+            dxdy: Tuple (dx, dy) containing the move made on x and y axis.
         """
 
         new_x, new_y = self.player.get_new_location(dxdy)

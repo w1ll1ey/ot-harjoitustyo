@@ -4,14 +4,16 @@ class Level:
     """Represents the level entity.
 
     Attributes:
-        matrix: Map of the level.
+        matrix: Map of the room.
+        player_spawn: Tuple (x, y) containing the starting point for the player.
+        free_tiles: List of tuples (x, y) containing available tiles for NPC and item placement.
     """
 
     def __init__(self, theme):
-        """Creates the level entity.
+        """Generates a room based on a theme configuration or uses a provided pre-defined room layout.
 
         Args:
-            matrix: Map of the level.
+            theme: Theme configuration for room generation.
         """
         
         if "matrix" in theme:
@@ -52,6 +54,16 @@ class Level:
                         self.free_tiles.append((x, y))
     
     def in_bounds(self, x, y):
+        """Checks if the given coordinate is within level boundaries.
+
+        Args:
+            x: The x coordinate.
+            y: The y coordinate.
+
+        Returns:
+            True ifn coordinate is within boundaries, False if it isn't.
+        """
+        
         return 0 <= y < len(self.matrix) and 0 <= x < len(self.matrix[0])
                     
     def is_wall(self, x, y):
@@ -85,6 +97,15 @@ class Level:
         return self.matrix[y][x] == 2
     
     def is_lore(self, x, y):
+        """Checks if the given coordinate represents a lore tile on the map.
+
+        Args:
+            x: The x coordinate.
+            y: The y coordinate.
+
+        Returns:
+            True is the given coordinate is a lore tile, False if it isn't.
+        """
         if not self.in_bounds(x, y):
             return False
         return self.matrix[y][x] == 3

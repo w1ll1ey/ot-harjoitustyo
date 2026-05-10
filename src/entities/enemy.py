@@ -2,10 +2,12 @@ from entities.character import Character
 
 class Enemy(Character):
     """Represents non-playable hostile entities.
+    
+    Inherits from Character and adds enemy-specific pathfinding logic.
 
-    Attributes:
-        start_x: Enemy spawn x coordinate.
-        start_y: Enemy spawn y coordinate.
+    Inherited Attributes:
+        x: Current x coordinate.
+        y: Current y coordinate.
         hp: Enemy hitpoints.
         damage: Damage dealt by enemy attacks.
         name: Name of the enemy. 

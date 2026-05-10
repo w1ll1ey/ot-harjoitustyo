@@ -9,9 +9,11 @@ class UI:
 
     Attributes:
         game: The current game session.
+        viewport_tiles_x: Width of the visible map in tiles.
+        viewport_tiles_y: Height of the visible map in tiles.
         cell_size: Size of one game tile in pixels.
-        map_width: Width of the visible map in pixels.
-        map_height: Height of the visible map in pixels.
+        viewport_width: Width of the visible map in pixels.
+        viewport_height: Height of the visible map in pixels.
         sidebar_width: Width of the sidebar in pixels.
         clock: Init for the game clock.
         screen: Init pygame display window.
