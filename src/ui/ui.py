@@ -115,7 +115,7 @@ class UI:
             camera_y = self.game.player.y - (self.viewport_tiles_y // 2)
             max_y = room_height - self.viewport_tiles_y
             camera_y = max(0, min(camera_y, max_y))
-        
+
         for screen_y in range(self.viewport_tiles_y):
             for screen_x in range(self.viewport_tiles_x):
                 tile_x = camera_x + screen_x
@@ -123,10 +123,10 @@ class UI:
                 if not self.game.level.in_bounds(tile_x, tile_y):
                     continue
                 tile = self.game.level.matrix[tile_y][tile_x]
-                
+
                 pixel_x = screen_x * self.cell_size
                 pixel_y = screen_y * self.cell_size
-                
+
                 if tile == 1:
                     self.screen.blit(self.textures['#'], (pixel_x, pixel_y))
                 if tile == 0:
@@ -149,12 +149,13 @@ class UI:
             character_y = character.y - camera_y
             character_pixel_x = character_x * self.cell_size
             character_pixel_y = character_y * self.cell_size
-            if character_x < 0 or character_x >= self.viewport_tiles_x or character_y < 0 or character_y >= self.viewport_tiles_y: 
+            if character_x < 0 or character_x >= self.viewport_tiles_x or character_y < 0 or character_y >= self.viewport_tiles_y:
                 continue
             self.screen.blit(
                 self.textures[character.name[0]], (character_pixel_x, character_pixel_y))
             if character.name not in drawn_names:
-                enemy_text = self.font.render(f"{character.name[0]} = {character.name}", True, (0, 0, 0))
+                enemy_text = self.font.render(
+                    f"{character.name[0]} = {character.name}", True, (0, 0, 0))
                 self.screen.blit(enemy_text, (sidebar_x, current_legend_y))
                 drawn_names.append(character.name)
                 current_legend_y += 20

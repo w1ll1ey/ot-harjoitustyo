@@ -1,8 +1,9 @@
 from entities.character import Character
 
+
 class Enemy(Character):
     """Represents non-playable hostile entities.
-    
+
     Inherits from Character and adds enemy-specific pathfinding logic.
 
     Inherited Attributes:
@@ -12,19 +13,6 @@ class Enemy(Character):
         damage: Damage dealt by enemy attacks.
         name: Name of the enemy. 
     """
-
-    def __init__(self, start_x, start_y, *, hp, damage, name):
-        """Creates the enemy entity.
-
-        Args:
-            start_x: Enemy spawn x coordinate.
-            start_y: Enemy spawn y coordinate.
-            hp: Enemy hitpoints.
-            damage: Damage dealt by enemy attacks.
-            name: Name of the enemy. 
-        """
-
-        super().__init__(start_x, start_y, hp=hp, damage=damage, name=name)
 
     def get_new_location(self, player_x, player_y):
         """Returns new location of the enemy based on the current player location.
