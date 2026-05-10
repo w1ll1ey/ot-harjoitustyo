@@ -14,11 +14,11 @@ Lataa projektin viimeisimmän releasen lähdekoodi valitsemalla Assets-osion alt
 
 ## Pelin tavoite
 
-Olet Remus Lupin. Tavoitteenasi on navigoida Tylypahkan sokkeloisia käytäviä ovelle asti välttäen kiinnijäämistä partioivalle vahtimestari Argus Vorolle (eng. Filch).
+Olet Remus Lupin. Tavoitteenasi on etsiä tarvittavat tavarat Tylypahkan huoneista jotta voitte pitää hauskaa ystäväsi Sirius Mustan kanssa. On kuitenkin jo ilta, eikä tupien ulkopuolelle saisi mennä! Varo siis huoneissa liikkuvia hahmoja, jotka eivät kaihda väkivaltaa sängyistä poistuneita oppilaita kohtaan.
 
 ## Kontrollit
 
-Peliä pelataan näppäimistöllä. Peli on vuoropohjainen: aina kun teet siirron, Voro tekee oman siirtonsa.
+Peliä pelataan näppäimistöllä. Peli on vuoropohjainen: aina kun teet siirron, muut hahmot tekevät oman siirtonsa.
 
     - W tai Nuoli ylös: Liiku ylös
 
@@ -40,9 +40,11 @@ Liikut kartalla, joka koostuu erilaisista ASCII-merkeistä:
 
     @ : Remus (Pelaaja)
 
-    F : Argus Voro (eng. Filch)
+    Eri kirjaimet : NPC:t (selitetty legendissä)
 
     + : Ovi
+
+    ? : Esine
 
     # : Seinä
 
