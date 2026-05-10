@@ -13,3 +13,7 @@
 | 24.4. | 2,5  | win conditionin lisäys, 100% testit                                                         |
 | 27.4. | 3    | dokumentointia (docstring, arkkitehtuuri)                                                   |
 | 28.4. | 2    | arkkitehtuurin dokumentointi, käyttöohje, changelog ym. päivitys                            |
+| 5.5.  | 5    | siirtyminen satunnaisgeneraatioon, ui-kamerapäivitys                                        |
+| 6.5.  | 8    | world staten, esineiden, friendlyjen ja dialogin lisäys, koherentin tarinan luonti          |
+| 9.5.  | 3,5  | testien päivitystä                                                                          |
+| 10.5. | 5    | dokumentaation ja koodin viimeistelyä palautusta varten                                     |
