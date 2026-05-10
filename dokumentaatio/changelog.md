@@ -29,3 +29,12 @@
 - Luotu mahdollisuus pelin häviämiselle ja voittamiselle
 - Laajennettu UI-luokkaa näyttämään tapahtumalokia
 - Laajennettu testaus kattamaan uudet ominaisuudet
+
+## Loppupalautus
+
+- Lisätty WorldState-luokka, joka ylläpitää huoneiden välistä etenemistä ja proseduraalista tarinalogiikkaa
+- Toteutettu huoneiden satunnaisgenerointi eri teemoilla sekä niiden sisällön sijoittelu lore- ja vihollislistojen perusteella
+- Lisätty lore-esineet, dialogipuu ja ystävähahmot, joiden avulla peliin tuli etenemistä ohjaava tarinallinen puoli
+- Toteutettu ystävähahmon satunnainen liikkuminen huoneessa ja vuorovaikutus dialogin kautta
+- Laajennettu käyttöliittymää tukemaan isoja huoneita pelaajaa seuraavalla kameralla
+- Laajennettu testaus uusiin ominaisuuksiin, poislukien GameLogicissa tapahtuva proseduraalisen tarinankerronnan hallintaan liittyviä ominaisuuksia

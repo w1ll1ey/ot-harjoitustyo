@@ -1,6 +1,6 @@
-# Ohjelmistotekniikka, harjoitustyö
+# Marauder's Map
 
-Sovellus on ruudukkopohjainen, vuoropohjainen luolastoseikkailupeli. Pelaaja ohjaa hahmoa kaksiulotteisessa maailmassa, jossa tavoitteena on tutkia huoneita, välttää/voittaa vihollisia ja kerätä aarteita kerätäkseen pisteitä. Teeman on tarkoitus ammentaa All the Young Dudes-kirjasta, mutta tarkentuu todennäköisesti ajan kanssa.
+Sovellus on ruudukkopohjainen, vuoropohjainen luolastoseikkailupeli. Pelaaja ohjaa hahmoa satunnaisgeneraatioon pohjautuvassa kaksiulotteisessa maailmassa, jossa tavoitteena on etsiä tarvittavat esineet huoneista vältellen vihollisia tai taistellen niitä vastaan. Teema ammentaa All the Young Dudes-kirjasta. Pelimoottori on rakennettu modulaarista valmiutta ajatellen, eli sillä voi halutessaan luoda monenlaisia haarautuvia tarinoita. Pelattavissa oleva versio on melko lineearinen esimerkkitarina, joskin kahta samanlaista pelikertaa ei siinäkään ole. Pelin voittaa löytämällä kaikki tarvittavat esineet ja palaamalla aloitushuoneeseen. Pelin häviää osumapisteiden (HP) pudotessa nollaan.
 
 ## Dokumentaatio
 
@@ -13,6 +13,8 @@ Sovellus on ruudukkopohjainen, vuoropohjainen luolastoseikkailupeli. Pelaaja ohj
 **Arkkitehtuuri**: https://github.com/w1ll1ey/ot-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.md
 
 **Käyttöohje**: https://github.com/w1ll1ey/ot-harjoitustyo/blob/master/dokumentaatio/kayttoohje.md
+
+**Testausdokumentti**: https://github.com/w1ll1ey/ot-harjoitustyo/blob/master/dokumentaatio/testaus.md
 
 **Release 1**: https://github.com/w1ll1ey/ot-harjoitustyo/releases/tag/viikko5
 
